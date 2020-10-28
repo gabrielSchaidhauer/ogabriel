@@ -15,7 +15,7 @@ title: "Gabriel Schaidhauer"
 description: "This is a personal blog where I can put my ideas and share with anyone interested"
 
 # The subpath of your site, e.g. /blog, for generating urls.
-baseurl: ""
+baseurl: "ogabriel"
 
 # The base hostname & protocol of your site for where absolute urls are needed.
 url: "https://ogabriel.com"
