@@ -1,0 +1,19 @@
+{
+  "links": [
+    {
+      "title": "GitHub",
+      "icon": "fa-github",
+      "url": "https://github.com/gabrielschaidhauer"
+    },
+    {
+      "title": "Instagram",
+      "icon": "fa-instagram",
+      "url": "https://www.instagram.com/gabrielschaidhauer"
+    },
+    {
+      "title": "LinkedIn",
+      "icon": "fa-linkedin",
+      "url": "https://www.linkedin.com/in/gabrielschaidhauer/"
+    }
+  ]
+}
