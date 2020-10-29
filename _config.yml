@@ -29,11 +29,11 @@ google_analytics: ""
 # Site navigation - each item must have a title and a url.
 navigation:
   - text: Home
-    url: /
+    url: /ogabriel
   - text: About
-    url: /about/
+    url: /ogabriel/about/
   - text: Tags
-    url: /tags/
+    url: /ogabriel/tags/
 
 # The shortname for your Disqus site to enable comments.
 disqus: ogabriel
