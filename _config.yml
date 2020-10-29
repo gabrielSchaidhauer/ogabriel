@@ -31,9 +31,9 @@ navigation:
   - text: Home
     url: /ogabriel
   - text: About
-    url: /ogabriel/about/
+    url: /ogabriel/about
   - text: Tags
-    url: /ogabriel/tags/
+    url: /ogabriel/tags
 
 # The shortname for your Disqus site to enable comments.
 disqus: ogabriel
