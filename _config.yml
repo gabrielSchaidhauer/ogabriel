@@ -5,8 +5,21 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'jekyll serve'. If you change this file, please restart the server process.
 
-# Site language
+defaults:
+  -
+    scope: 
+      type: posts
+    values:
+      permalink: /:path/:title:output_ext
+
+
+# Site languages
 lang: en-US
+
+# Available languages
+languages:
+  - pt: "pt-BR"
+  - en: "en-US"
 
 # Site title
 title: "Gabriel Schaidhauer"
@@ -46,13 +59,14 @@ footer:
   content: "&copy; ogabriel.com all rights reserved."
   has_social: true
 
-# Plugins
-plugins:
-  - jekyll-paginate
-
 # http://jekyllrb.com/docs/pagination/
-paginate: 3
-paginate_path: '/page:num/'
+paginate_multiple:
+- paginate: 3
+  paginate_path: '/en/page:num/'
+  sub_dir: '/en'
+- paginate: 3
+  paginate_path: '/pt/page:num/'
+  sub_dir: '/pt'
 
 
 # Permalinks

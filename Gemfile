@@ -5,6 +5,7 @@ gem "jekyll", "~> 3.7.3"
 
 group :jekyll_plugins do
   gem 'jekyll-paginate'
+  gem "jekyll-paginate-multiple"
   gem 'jekyll-sitemap'
   gem 'github-pages'
 end

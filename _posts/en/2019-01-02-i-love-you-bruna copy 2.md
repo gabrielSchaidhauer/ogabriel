@@ -4,6 +4,7 @@ title: "I love you bruna"
 description: "Loving you is very good"
 date: 2019-01-02
 feature_image: images/mountain.jpg
+language: "en"
 tags: [love]
 ---
 
