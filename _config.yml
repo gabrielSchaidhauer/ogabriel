@@ -12,6 +12,7 @@ defaults:
     values:
       permalink: /:path
 
+destination: docs
 
 # Site languages
 lang: en-US
