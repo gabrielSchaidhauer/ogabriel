@@ -10,7 +10,7 @@ defaults:
     scope: 
       type: posts
     values:
-      permalink: /:path/:title:output_ext
+      permalink: /:path
 
 
 # Site languages
