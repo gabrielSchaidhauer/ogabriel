@@ -1,0 +1,54 @@
+{
+    "temporal": {
+        "months": {
+            "JAN": {
+                "pt-BR": "Janeiro",
+                "en-US": "January"
+            },
+            "FEB": {
+                "pt-BR": "Fevereiro",
+                "en-US": "February" 
+            },
+            "MAR": {
+                "pt-BR": "Março",
+                "en-US": "March"
+            },
+            "APR": {
+                "pt-BR": "Abril",
+                "en-US": "April"
+            },
+            "MAY": {
+                "pt-BR": "Maio",
+                "en-US": "May"
+            },
+            "JUN": {
+                "pt-BR": "Junho",
+                "en-US": "June"
+            },
+            "JUL": {
+                "pt-BR": "Julho",
+                "en-US": "July"
+            },
+            "AUG": {
+                "pt-BR": "Agosto",
+                "en-US": "August"
+            },
+            "SEP": {
+                "pt-BR": "Setembro",
+                "en-US": "September"
+            },
+            "OCT": {
+                "pt-BR": "Outubro",
+                "en-US": "October"
+            },
+            "NOV": {
+                "pt-BR": "Novembro",
+                "en-US": "November"
+            },
+            "DEC": {
+                "pt-BR": "Dezembro",
+                "en-US": "December"
+            }
+        }
+    }
+}

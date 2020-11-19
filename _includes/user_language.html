@@ -31,20 +31,47 @@
     function getUserLanguage() {
         var language = getCookie("userLanguage");
 
-        if (!language) {
+        if (!language || language == "undefined") {
             var userLang = navigator.language || navigator.userLanguage;
             language = languages[userLang];
-            setCookie("userLanguage", language, 360);
+
+            if (!language) {
+                language = languages['en-US'];
+            }
         }
 
         return language;
     }
 
     function setUserLanguage(language) {
-        setCookie("userLanguage", language, 360);
+        debugger;
         var url = location.href;
-        for(lang in Object.keys(languages)) {
-            
+        var chosenLanguage = '';
+        var languageKeys = Object.keys(languages);
+        for (var i = 0; i < languageKeys.length; i++) {
+            var lang = languageKeys[i];
+            if (lang === language) {
+                setCookie("userLanguage", languages[lang], 360);
+                chosenLanguage = languages[lang];
+            } else if (languages[lang] === language) {
+                setCookie("userLanguage", language, 360);
+                chosenLanguage = language;
+            }
+        }
+
+        if (!url.includes('/' + chosenLanguage + '/')) {
+            for (var i = 0; i < languageKeys.length; i++) {
+                var lang = languageKeys[i];
+                if (url.includes('/' + languages[lang] + '/')) {
+                    url = url.replace('/' + languages[lang] + '/', '/' + chosenLanguage + '/');
+                    break;
+                }
+            }
+
+            if (!url.includes('/' + chosenLanguage + '/')) {
+                url = url + '/' + chosenLanguage;
+            }
+            location.href = url;
         }
     }
 </script>

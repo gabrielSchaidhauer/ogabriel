@@ -1,9 +1,8 @@
 <div class="comments-area">
   <div class="comments-inner">
-    <h2 class="comments-title">Comments</h2>
+    <h2 class="comments-title">{{site.data.site_content.disqus.comments[page.language]}}</h2>
     <div id="disqus_thread"></div>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
-        Disqus</a>.</noscript>
+    <noscript>{{ site.data.site_content.disqus.enableJavascript[page.language] }}</noscript>
   </div><!-- .comments-inner -->
 </div><!-- .comments-area -->
 

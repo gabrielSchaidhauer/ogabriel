@@ -1,7 +1,19 @@
 {
-  "name": "Gabriel Schaidhauer",
-  "bio": "The author is a tech enthusiast with a taste for beer, wine and videogames currently working as software architect on a tech company based on Porto Alegre",
-  "url": "",
-  "location": "Porto Alegre, Brasil",
-  "image": "images/author.jpg"
+  "name": {
+    "pt-BR": "Gabriel Schaidhauer",
+    "en-US": "Gabriel Schaidhauer"
+  },
+  "bio": {
+    "pt-BR": "O autor é um entusiasta de tecnologia com bom gosto para cerveja, vinho e videogames atualmente trabalhando como arquiteto de software em uma empresa localizada em Porto Alegre",
+    "en-US": "The author is a tech enthusiast with a taste for beer, wine and videogames currently working as software architect on a tech company based on Porto Alegre"
+  },
+  "url": {
+    "pt-BR": "",
+    "en-US": ""
+  },
+  "location": {
+    "pt-BR": "Porto Alegre, Brasil",
+    "en-US": "Porto Alegre, Brazil"
+  },
+  "image": "../../images/author.jpg"
 }

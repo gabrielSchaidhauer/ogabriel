@@ -10,19 +10,53 @@ layout: default
     <div class="post-content">
       <div class="archive-tags">
         {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+        {% capture languageMarker %}%{{page.language}}%{% endcapture %}
         {% assign sortedTags = site_tags | split:',' | sort %}
-        {% for tag in sortedTags %}
-        <a href="#{{ tag | cgi_escape }}">{{ tag }}</a>{% unless forloop.last %} {% endunless %}
+        {% assign languageTags = sortedTags | where_exp:"item", "item contains languageMarker"%}
+        {% for tag in languageTags %}
+        <a href="#{{ tag | cgi_escape }}">{{ tag | remove: languageMarker }}</a>{% unless forloop.last %} {% endunless %}
         {% endfor %}
       </div><!-- .archive-tag-list -->
-      {% for tag in sortedTags %}
-        <h2 id="{{ tag | cgi_escape }}">{{ tag }}</h2>
-        <ul class="archive-post-list">
+      {% for tag in languageTags %}
+
+      <h2 id="{{ tag | cgi_escape }}">{{ tag | remove: languageMarker }}</h2>
+      <ul class="archive-post-list">
         {% for post in site.tags[tag] %}
-          <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> <span class="archive-meta"> — <time class="archive-date" datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date: "%B %-d, %Y" }}</time></span></li>
+        {% if post.language == page.language %}
+        {% assign month = post.date | date: "%m" %}
+        {% case month %}
+        {% when '01' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['JAN'][page.language] %}
+        {% when '02' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['FEB'][page.language] %}
+        {% when '03' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['MAR'][page.language] %}
+        {% when '04' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['APR'][page.language] %}
+        {% when '05' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['MAY'][page.language] %}
+        {% when '06' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['JUN'][page.language] %}
+        {% when '07' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['JUL'][page.language] %}
+        {% when '08' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['AUG'][page.language] %}
+        {% when '09' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['SEP'][page.language] %}
+        {% when '10' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['OCT'][page.language] %}
+        {% when '11' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['NOV'][page.language] %}
+        {% when '12' %}
+        {% assign localizedDate = site.data.layout_content.temporal.months['DEC'][page.language] %}
+        {% endcase %}
+        <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> <span class="archive-meta"> — <time
+              class="archive-date"
+              datetime="{{ post.date | date: "%Y-%m-%d" }}">{{localizedDate}} {{ post.date | date: "%-d, %Y" }}</time></span></li>
+        {% endif %}
         {% endfor %}
-        </ul><!-- .archive-post-list -->
-        <p><a href="#top" class="archive-top-link">{{ site.data.site_content.return_to_top['pt-BR'] }} &#8593;</a></p>
+      </ul><!-- .archive-post-list -->
+      <p><a href="#top" class="archive-top-link">{{ site.data.site_content.tags.returnTop[page.language] }} &#8593;</a></p>
       {% endfor %}
     </div><!-- .post-content -->
   </article><!-- .post -->

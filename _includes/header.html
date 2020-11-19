@@ -1,4 +1,5 @@
 <header class="site-header">
+  {% include user_language.html %}
   {% if page.url == "/" %}
   <h1 class="site-title"><a class="logo-text" href="{{ site.baseurl }}/">{{site.title}}</a></h1>
   {% else %}
@@ -14,9 +15,12 @@
         {% assign current = 'nav-current' %}
         {% endif %}
         <li class="menu-item {{ current }}">
-          <a class="{{ current }}" href="{{ item.url }}">{{ item.text }}</a>
+          <a class="{{ current }}" href="{{ item.url }}">{{ site.data.site_content.header[item.text][page.language] }}</a>
         </li>
         {% endfor %}
+        <li class="menu-item {{ current }}">
+          <a href="#" onclick="setUserLanguage('{{site.data.site_content.header.languageRef[page.language]}}')">{{ site.data.site_content.header.language[page.language] }}</a>
+        </li>
       </ul><!-- .menu -->
       <button id="menu-close" class="menu-toggle"><span class="screen-reader-text">Close Menu</span><span
           class="icon-close" aria-hidden="true"></span></button>
@@ -24,7 +28,6 @@
   </nav><!-- .site-navigation -->
   <button id="menu-open" class="menu-toggle"><span class="screen-reader-text">Open Menu</span><span class="icon-menu" aria-hidden="true"></span></button>
 </header>
-
 {% if site.description and site.description != "" and page.url == "/" %}
 <div class="site-description fadeInDown delay_05s">
   <p>{{ site.description }}</p>

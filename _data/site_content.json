@@ -1,6 +1,104 @@
 {
-    "return_to_top": {
-        "pt-BR": "Retornar ao topo",
-        "en-US": "Return to top" 
+    "fourOFour": {
+        "title": {
+            "pt-BR": "Esta página ainda está vazia :(",
+            "en-US": "Page Not Found"
+        },
+        "mainMessage": {
+            "pt-BR": "Esta página ainda está vazia :(",
+            "en-US": "This page is still empty :("
+        },  
+        "instruction": {
+            "pt-BR": "Encontre algo interessante para ler &rarr;",
+            "en-US": "Find something more interesting to read &rarr;"
+        }
+    },
+    "about": {
+        "content": {
+            "pt-BR": "**Gabriel Schaidhauer** é um engenheiro de software, amante de cerveja, péssimo músico e pai de cachorro.\n\nVivo no Brasil e gosto muito de música, jogos e tecnologia. Sou apaixonado por inovação e amo participar de projetos inovadores que me permitam usar a minha imaginação para realizar qualquer coisa que puder imaginar\n\n>É até divertido realizar o impossível <cite>Walt Disney</cite>\n\nEspero que aprecie o que escrevo! :)\n\nObrigado por aparecer\n\n*Gabriel*",
+            "en-US": "**Gabriel Schaidhauer** is a software engineer, a beer and wine drinker, a terrible musician and a dog father.\n\nLiving in Brazil I like a lot music, games and tech. I'm passionate by innovation and I love participating on innovative projects that allow me to use my creativity to do anything imaginable.\n\n>It's kind of fun to do the impossible <cite>Walt Disney</cite>\n\nI hope you enjoy my writing and please comment! :)\n\nThank you for coming\n\n*Gabriel*"
+        }
+    },
+    "posts": {
+        "by": {
+            "pt-BR": "Por",
+            "en-US": "By"
+        },
+        "in": {
+            "pt-BR": "em",
+            "en-US": "in"
+        },
+        "share": {
+            "pt-BR": "Compartilhar",
+            "en-US": "Share"
+        },
+        "about": {
+            "pt-BR": "Sobre",
+            "en-US": "About"
+        },
+        "continue": {
+            "pt-BR": "Continue lendo",
+            "en-US": "Continue reading"
+        },
+        "olderPosts": {
+            "pt-BR": "Postagens mais antigas",
+            "en-US": "Older Posts"
+        },
+        "newerPosts": {
+            "pt-BR": "Postagens mais novas",
+            "en-US": "Newer Posts"
+        },
+        "page": {
+            "pt-BR": "Página",
+            "en-US": "Page"
+        },
+        "of": {
+            "pt-BR": "de",
+            "en-US": "of"
+        }
+    },
+    "disqus": {
+        "comments": {
+            "pt-BR": "Comentários",
+            "en-US": "Comments"
+        },
+        "enableJavascript": {
+            "pt-BR": "Por favor habilite o Javascript pars visualizar os <a href='http://disqus.com/?ref_noscript'>comentários fornecidos por Disqus</a>.",
+            "en-US": "Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus</a>."
+        }
+    },
+    "footer": {
+        "copyright": {
+            "pt-BR": "&copy; ogabriel.com todos os direitos reservados.",
+            "en-US": "&copy; ogabriel.com all rights reserved."
+        }
+    },
+    "header": {
+        "home": {
+            "pt-BR": "Início",
+            "en-US": "Home"
+        },
+        "about": {
+            "pt-BR": "Sobre",
+            "en-US": "About"
+        },
+        "tags": {
+            "pt-BR": "Tags",
+            "en-US": "Tags"
+        },
+        "language": {
+            "pt-BR": "🇺🇸 English",
+            "en-US": "🇧🇷 Português"
+        },
+        "languageRef": {
+            "pt-BR": "en-US",
+            "en-US": "pt-BR"
+        }
+    },
+    "tags": {
+        "returnTop": {
+            "pt-BR": "Retornar ao topo",
+            "en-US": "Return to Top"
+        }
     }
 }

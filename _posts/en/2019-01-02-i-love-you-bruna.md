@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Eu te amo Bruna"
+title: "Example post"
 description: "Loving you is very good"
-date: 2019-01-02
+date: 2019-12-02
 feature_image: images/mountain.jpg
-language: "pt"
-tags: [love]
+language: en-US
+tags: [love%en-US%]
 ---
 
-Eu te amo
+I love you
 
 
 <!--more-->

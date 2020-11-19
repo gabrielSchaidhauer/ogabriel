@@ -41,12 +41,12 @@ google_analytics: "G-15Y20JGRVJ"
 
 # Site navigation - each item must have a title and a url.
 navigation:
-  - text: Home
-    url: /ogabriel
-  - text: About
-    url: /ogabriel/about
-  - text: Tags
-    url: /ogabriel/tags
+  - text: home
+    url: /ogabriel/
+  - text: about
+    url: about
+  - text: tags
+    url: tags
 
 # The shortname for your Disqus site to enable comments.
 disqus: ogabriel-com
@@ -56,7 +56,6 @@ accent_color: '#9DC88D'
 
 # Site footer
 footer:
-  content: "&copy; ogabriel.com all rights reserved."
   has_social: true
 
 # http://jekyllrb.com/docs/pagination/
