@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada</title>
+  <meta name="description" content="This is a personal blog where I can put my ideas and share with anyone interested">
+  <link rel="canonical" href="https://ogabriel.com/pt/404">
+  <link rel="alternate" type="application/rss+xml" title="Gabriel Schaidhauer Feed"
+    href="https://ogabriel.com/feed.xml">
+  
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/png" />
+  
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="page" class="site">
+    <div class="inner">
+      <header class="site-header">
+  <script>
+    var languages = {
+        'pt-BR': 'pt',
+        'en-US': 'en'
+    };
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+
+    function getUserLanguage() {
+        var language = getCookie("userLanguage");
+
+        if (!language || language == "undefined") {
+            var userLang = navigator.language || navigator.userLanguage;
+            language = languages[userLang];
+
+            if (!language) {
+                language = languages['en-US'];
+            }
+        }
+
+        return language;
+    }
+
+    function setUserLanguage(language) {
+        debugger;
+        var url = location.href;
+        var chosenLanguage = '';
+        var languageKeys = Object.keys(languages);
+        for (var i = 0; i < languageKeys.length; i++) {
+            var lang = languageKeys[i];
+            if (lang === language) {
+                setCookie("userLanguage", languages[lang], 360);
+                chosenLanguage = languages[lang];
+            } else if (languages[lang] === language) {
+                setCookie("userLanguage", language, 360);
+                chosenLanguage = language;
+            }
+        }
+
+        if (!url.includes('/' + chosenLanguage + '/')) {
+            for (var i = 0; i < languageKeys.length; i++) {
+                var lang = languageKeys[i];
+                if (url.includes('/' + languages[lang] + '/')) {
+                    url = url.replace('/' + languages[lang] + '/', '/' + chosenLanguage + '/');
+                    break;
+                }
+            }
+
+            if (!url.includes('/' + chosenLanguage + '/')) {
+                url = url + '/' + chosenLanguage;
+            }
+            location.href = url;
+        }
+    }
+</script>
+  
+  <p class="site-title"><a class="logo-text" href="/">Gabriel Schaidhauer</a></p>
+  
+  <nav class="site-navigation">
+    <div class="site-navigation-wrap">
+      <h2 class="screen-reader-text">Main navigation</h2>
+      <ul class="menu">
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/">Início</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="about">Sobre</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="tags">Tags</a>
+        </li>
+        
+        <li class="menu-item ">
+          <a href="#" onclick="setUserLanguage('en-US')">🇺🇸 English</a>
+        </li>
+      </ul><!-- .menu -->
+      <button id="menu-close" class="menu-toggle"><span class="screen-reader-text">Close Menu</span><span
+          class="icon-close" aria-hidden="true"></span></button>
+    </div><!-- .site-navigation-wrap -->
+  </nav><!-- .site-navigation -->
+  <button id="menu-open" class="menu-toggle"><span class="screen-reader-text">Open Menu</span><span class="icon-menu" aria-hidden="true"></span></button>
+</header>
+
+      <main class="main-content fadeInDown delay_075s">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Página não encontrada</h1>
+      
+      <figure class="post-thumbnail image-card width-wide">
+        <img src="/images/404.jpg" alt="Página não encontrada">
+      </figure><!-- .post-thumbnail -->
+      
+    </header><!-- .post-header -->
+    <div class="post-content">
+      <p>Esta página ainda está vazia :(<br />
+<a class="error-link" href="/">Encontre algo interessante para ler →</a></p>
+
+    </div><!-- .post-content -->
+  </article><!-- .post -->
+</main><!-- .site-main -->
+      <footer class="site-footer">
+  <div class="offsite-links">
+    
+      
+<a href="https://github.com/gabrielschaidhauer" target="_blank" rel="noopener">
+  <span class="fa-github" aria-hidden="true"></span>
+  <span class="screen-reader-text">GitHub</span>
+</a>
+
+<a href="https://www.instagram.com/gabrielschaidhauer" target="_blank" rel="noopener">
+  <span class="fa-instagram" aria-hidden="true"></span>
+  <span class="screen-reader-text">Instagram</span>
+</a>
+
+<a href="https://www.linkedin.com/in/gabrielschaidhauer/" target="_blank" rel="noopener">
+  <span class="fa-linkedin" aria-hidden="true"></span>
+  <span class="screen-reader-text">LinkedIn</span>
+</a>
+
+    
+  </div><!-- .offsite-links -->
+  <div class="footer-bottom">
+    <div class="site-info">
+      <p>© ogabriel.com todos os direitos reservados.</p>
+
+    </div><!-- .site-info -->
+    <a href="#page" id="back-to-top" class="back-to-top"><span class="screen-reader-text">Back to the top </span>&#8593;</a>
+  </div><!-- .footer-bottom -->
+</footer><!-- .site-footer -->
+
+    </div><!-- .inner -->
+  </div><!-- .site -->
+
+  <!-- Scripts -->
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-15Y20JGRVJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-15Y20JGRVJ');
+</script>
+  
+  <script src="/assets/js/plugins.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+</body>
+</html>

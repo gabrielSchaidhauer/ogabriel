@@ -10,8 +10,9 @@ defaults:
     scope: 
       type: posts
     values:
-      permalink: /:path/:title:output_ext
+      permalink: /:path
 
+destination: docs
 
 # Site languages
 lang: en-US

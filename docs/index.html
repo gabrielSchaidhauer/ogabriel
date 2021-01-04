@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+</head>
+
+<body>
+  <noscript>
+    <p>Enable javascript for a better experience!</p>
+    <a href="/en">Go to Site</a>
+  </noscript>
+  <script>
+    var languages = {
+        'pt-BR': 'pt',
+        'en-US': 'en'
+    };
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+
+    function getUserLanguage() {
+        var language = getCookie("userLanguage");
+
+        if (!language || language == "undefined") {
+            var userLang = navigator.language || navigator.userLanguage;
+            language = languages[userLang];
+
+            if (!language) {
+                language = languages['en-US'];
+            }
+        }
+
+        return language;
+    }
+
+    function setUserLanguage(language) {
+        debugger;
+        var url = location.href;
+        var chosenLanguage = '';
+        var languageKeys = Object.keys(languages);
+        for (var i = 0; i < languageKeys.length; i++) {
+            var lang = languageKeys[i];
+            if (lang === language) {
+                setCookie("userLanguage", languages[lang], 360);
+                chosenLanguage = languages[lang];
+            } else if (languages[lang] === language) {
+                setCookie("userLanguage", language, 360);
+                chosenLanguage = language;
+            }
+        }
+
+        if (!url.includes('/' + chosenLanguage + '/')) {
+            for (var i = 0; i < languageKeys.length; i++) {
+                var lang = languageKeys[i];
+                if (url.includes('/' + languages[lang] + '/')) {
+                    url = url.replace('/' + languages[lang] + '/', '/' + chosenLanguage + '/');
+                    break;
+                }
+            }
+
+            if (!url.includes('/' + chosenLanguage + '/')) {
+                url = url + '/' + chosenLanguage;
+            }
+            location.href = url;
+        }
+    }
+</script>
+  <script>
+    (function () {
+      setUserLanguage(getUserLanguage());
+    })();
+  </script>
+</body>
+<html>
+
+</html>
