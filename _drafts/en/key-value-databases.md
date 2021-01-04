@@ -4,11 +4,11 @@ title: "Post exemplo"
 description: "Loving you is very good"
 date: 2019-01-02
 feature_image: images/mountain.jpg
-language: pt-BR
-tags: [amor%pt-BR%]
+language: en-US
+tags: [amor%en-US%]
 ---
 
-Eu te amo
+KV
 
 
 <!--more-->
