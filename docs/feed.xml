@@ -5,8 +5,8 @@
         <description>This is a personal blog where I can put my ideas and share with anyone interested</description>
         <link>http://localhost:4000/</link>
         <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 05 Jan 2021 08:37:00 -0300</pubDate>
-        <lastBuildDate>Tue, 05 Jan 2021 08:37:00 -0300</lastBuildDate>
+        <pubDate>Mon, 11 Jan 2021 08:55:00 -0300</pubDate>
+        <lastBuildDate>Mon, 11 Jan 2021 08:55:00 -0300</lastBuildDate>
         <generator>Jekyll v3.7.4</generator>
         
             <item>
@@ -60,27 +60,86 @@
         
             <item>
                 <title>Bancos de dados Chave e Valor</title>
-                <description>&lt;p&gt;Resumo aqui&lt;/p&gt;
+                <description>&lt;p&gt;Bancos de dados chave e valor são uma categoria que abrange uma série de bancos de dados NoSQL com caracteristicas similares. Apesar disto, nem todos são iguais, aqui vou explicar um pouco algumas destas caracteriscas sem entrar a fundo nas especificidades de cada um.&lt;/p&gt;
 
-&lt;!-- More --&gt;
+&lt;!--more--&gt;
 
-&lt;p&gt;Bancos de dados do tipo Chave e Valor são bancos considerados NoSQL, ou seja, bancos não relacionais. Os bancos NoSQL são bancos de dados com caracteristicas bem especificas as quais resumirei um pouco a seguir.&lt;/p&gt;
+&lt;p&gt;Para saber mais sobre a definição de um banco de dados NoSQL, as diferenças que eles tem de um banco de dados relacional sobre o teorema de CAP entre outras coisas, um ótimo livro chamado &lt;a href=&quot;https://www.amazon.com.br/NoSQL-Distilled-Emerging-Polyglot-Persistence-ebook/dp/B0090J3SYW/ref=tmm_kin_swatch_0?_encoding=UTF8&amp;amp;qid=&amp;amp;sr=&quot;&gt;NoSQL Distilled&lt;/a&gt;. Este livro abrange conceitos iniciais e gerais de bancos de dados NoSQL e serve como uma ótima base para quem quer aprender um pouco mais.&lt;/p&gt;
 
-&lt;h2 id=&quot;bancos-relacionais&quot;&gt;Bancos Relacionais&lt;/h2&gt;
+&lt;h2 id=&quot;como-assim-chave-e-valor&quot;&gt;Como assim chave e valor?&lt;/h2&gt;
 
-&lt;p&gt;Antes de entendermos o que são bancos não relacionais acredito ser importante definirmos o que é um banco relacional.&lt;/p&gt;
+&lt;p&gt;Um banco de dados chave valor é uma estrutura para armazenamento de dados que funciona de forma muito similar a uma estrutura de dados do tipo mapa ou um dicionário, onde nós temos uma chave. Esta chave é um identificador para um registro é como se ela guardasse o endereço para o valor que procuramos.&lt;/p&gt;
 
-&lt;p&gt;Em suma, um banco relacional é aquele que tem os seus dados organizados de forma em que eles se relacionem uns com os outros.&lt;/p&gt;
+&lt;p&gt;Utilizando uma analogia simples, pode se dizer que uma estrutura deste tipo é como a recepção de uma pousada. Ao chegar na pousada e informar a hospedagem a recepção nos entrega uma chave e esta chave contem o numero do nosso quarto e nos permite acessá-lo. De posse desta chave sempre conseguirmos ter um acesso direto ao nosso quarto.&lt;/p&gt;
 
-&lt;!-- Relationship image --&gt;
+&lt;figure class=&quot;image-card width-wide caption&quot;&gt;
+  &lt;img src=&quot;/images/kv-database/reception.jpg&quot; alt=&quot;Hotel Reception&quot; /&gt;
+  
+  &lt;figcaption class=&quot;caption-text&quot;&gt;&lt;/figcaption&gt;
+  
+&lt;/figure&gt;
 
-&lt;p&gt;Geralmente estes bancos de dados estruturam os seus dados em tabelas e estas tabelas se relacionam através de referências entre as suas colunas.&lt;/p&gt;
+&lt;p&gt;Trazendo isto um pouco mais perto da linguagem técnica podemos pensar também em um &lt;em&gt;&lt;a href=&quot;https://pt.wikipedia.org/wiki/JSON&quot;&gt;JSON&lt;/a&gt;&lt;/em&gt;:&lt;/p&gt;
 
-&lt;p&gt;Bancos relacionais em geral também são considerados multiproposito, uma vez que oferecem uma vasta gama de funcionalidades que beneficiam diversos tipos de aplicações.&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;quartos&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;306&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;camas&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;plasma&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;206&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;camas&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;tv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;plasma&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Dentre estas funcionalidades temos a possibilidade de realizarmos queries complexas, buscando informações com base inclusive no relacionamento das tabelas.&lt;/p&gt;
+&lt;h2 id=&quot;tá-mas-onde-entra-o-banco-de-dados&quot;&gt;Tá mas onde entra o banco de dados?&lt;/h2&gt;
 
-&lt;p&gt;Bancos relacionais obedecem a um &lt;em&gt;schema&lt;/em&gt; o qual é uma definição do formato dos dados que devem ser armazenados. Este &lt;em&gt;schema&lt;/em&gt; geralmente é bem rigido e custoso para ser modificado, principalmente quando já existem dados no banco.&lt;/p&gt;
+&lt;p&gt;Certo, se chegamos até aqui, provavelmente você já entendeu um pouco de como tudo isto funciona, e talvez até já tenha lidado com mapas e dicionários com algumas linguagens de programação, mas fica a pergunta, o que diabos isso tudo tem a ver com bancos de dados e o que são bancos de dados chave e valor, certo?&lt;/p&gt;
+
+&lt;p&gt;Bom tem tudo a ver e você já vai ver porquê.&lt;/p&gt;
+
+&lt;p&gt;De acordo com a definição da &lt;a href=&quot;https://www.oracle.com/br/database/what-is-database/&quot;&gt;Oracle&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Um banco de dados é uma coleção organizada de informações - ou dados - estruturadas, normalmente armazenadas eletronicamente em um sistema de computador&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Nesta categoria se encaixam softwares cujo objetivo é manter dados de forma organizada:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://redis.io&quot;&gt;Redis&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/dynamodb/&quot;&gt;DynamoDB&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.project-voldemort.com/voldemort/&quot;&gt;Voldemort&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Aqui trago somente 3 exemplos de bancos chave e valor mas esta lista não tem o objetivo de de ser exaustiva, Este &lt;a href=&quot;https://en.wikipedia.org/wiki/Key–value_database&quot;&gt;artigo&lt;/a&gt; possui uma lista mais completa caso seja do seu interesse.&lt;/p&gt;
+
+&lt;p&gt;Estes bancos em geral, embora não trabalhem exclusivamente como chave e valor desempenham bem este papel.&lt;/p&gt;
+
+&lt;p&gt;Bancos de dados Chave e Valor podem operar de duas formas: Em memória ou de forma híbrida.&lt;/p&gt;
+
+&lt;h3 id=&quot;bancos-de-dados-em-memória&quot;&gt;Bancos de dados em memória&lt;/h3&gt;
+
+&lt;figure class=&quot;image-card width-wide caption&quot;&gt;
+  &lt;img src=&quot;/images/kv-database/memory.jpg&quot; alt=&quot;Memory&quot; /&gt;
+  
+  &lt;figcaption class=&quot;caption-text&quot;&gt;&lt;/figcaption&gt;
+  
+&lt;/figure&gt;
+
+&lt;p&gt;Quando um banco de dados está configurado para trabalhar em memória o que ocorre é que toda a informação é armazenada na memória RAM do servidor. Como tudo, quando falamos de software (e até em outras situações) existem pontos positivos e negativos.&lt;/p&gt;
+
+&lt;p&gt;Como principal ponto positivo temos a velocidade. Bancos de dados operando exclusivamente em memória não precisam escrever a informação em disco e o acesso a memória é muito mais rápido que o acesso a disco portanto são bancos onde a escrita e a leitura de informações é muito rápida.&lt;/p&gt;
+
+&lt;p&gt;Em se tratando de bancos chave e valor a leitura de informações se torna muito rápida também pela forma como é armazenda pois similar a um mapa, a partir da chave temos acesso direto ao valor então na maior parte dos casos podemos dizer que teremos uma complexidade O(1) para a leitura de informações destes bancos de dados.&lt;/p&gt;
+
+&lt;p&gt;Mas como &lt;a href=&quot;https://pt.wikipedia.org/wiki/There_ain%27t_no_such_thing_as_a_free_lunch&quot;&gt;não existe almoço grátis&lt;/a&gt; existem também alguns lados negativos desta abordagem.&lt;/p&gt;
+
+&lt;p&gt;Como as informações estão em memória e a memória RAM é volátil, caso ocorra alguma falha, queda de energia, etc. esta informação pode ser inteiramente perdida. Outro ponto importante é que usualmente temos uma quantidade muito menor de memória RAM do que disco nos servidores, e esta não é facilmente expansivel a ponto de podermos ter memória de forma elástica, inclusive pelo seu custo, sendo assim ficamos limitados a quantidade disponível de memória RAM, portanto é preciso tomar cuidado, tanto para garantir que estamos usando esta abordagem com dados que realmente valham a pena pois não teremos muito espaço, bem como, que esta informação não represente problema caso perdida ou possa ser realimentada de outra fonte.&lt;/p&gt;
+
+&lt;h3 id=&quot;armazenamento-híbrido&quot;&gt;Armazenamento Híbrido&lt;/h3&gt;
+
+&lt;p&gt;Estes bancos geralmente não trabalham somente com armazenamento em disco, especialmente visto que o objetivo deles em geral é ter ótima performance, sendo assim normalmente eles trabalham com uma abordagem mais híbrida. Esta abordagem funciona, em geral, de forma que toda informação quando é gravada é persistida no disco porém uma parte dela é mantida em memória para que o acesso seja rápido.&lt;/p&gt;
+
+&lt;p&gt;O que é ou não mantido em memória vai depender da política de cada banco de dados e geralmente pode ser configurada de acordo com o seu use case para definir a forma que melhor se adequa, podendo ser por exemplo os registros mais recentes, os registros mais acessados, etc.&lt;/p&gt;
+
 </description>
                 <pubDate>Thu, 01 Jan 1970 00:00:00 -0300</pubDate>
                 <link>http://localhost:4000/_drafts/pt/key-value-databases</link>

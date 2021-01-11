@@ -152,33 +152,92 @@
             rel="tag">nosql</a></span>
       </div><!-- .post-meta -->
       
-      <figure class="post-thumbnail image-card width-wide">
-        <img src="/images/mountain.jpg" alt="Bancos de dados Chave e Valor">
+      <figure class="post-thumbnail image-card width-full">
+        <img src="/images/kv-database/lockers.jpg" alt="Bancos de dados Chave e Valor">
       </figure><!-- .post-thumbnail -->
       
     </header><!-- .post-header -->
     <div class="post-content">
-      <p>Resumo aqui</p>
+      <p>Bancos de dados chave e valor são uma categoria que abrange uma série de bancos de dados NoSQL com caracteristicas similares. Apesar disto, nem todos são iguais, aqui vou explicar um pouco algumas destas caracteriscas sem entrar a fundo nas especificidades de cada um.</p>
 
-<!-- More -->
+<!--more-->
 
-<p>Bancos de dados do tipo Chave e Valor são bancos considerados NoSQL, ou seja, bancos não relacionais. Os bancos NoSQL são bancos de dados com caracteristicas bem especificas as quais resumirei um pouco a seguir.</p>
+<p>Para saber mais sobre a definição de um banco de dados NoSQL, as diferenças que eles tem de um banco de dados relacional sobre o teorema de CAP entre outras coisas, um ótimo livro chamado <a href="https://www.amazon.com.br/NoSQL-Distilled-Emerging-Polyglot-Persistence-ebook/dp/B0090J3SYW/ref=tmm_kin_swatch_0?_encoding=UTF8&amp;qid=&amp;sr=">NoSQL Distilled</a>. Este livro abrange conceitos iniciais e gerais de bancos de dados NoSQL e serve como uma ótima base para quem quer aprender um pouco mais.</p>
 
-<h2 id="bancos-relacionais">Bancos Relacionais</h2>
+<h2 id="como-assim-chave-e-valor">Como assim chave e valor?</h2>
 
-<p>Antes de entendermos o que são bancos não relacionais acredito ser importante definirmos o que é um banco relacional.</p>
+<p>Um banco de dados chave valor é uma estrutura para armazenamento de dados que funciona de forma muito similar a uma estrutura de dados do tipo mapa ou um dicionário, onde nós temos uma chave. Esta chave é um identificador para um registro é como se ela guardasse o endereço para o valor que procuramos.</p>
 
-<p>Em suma, um banco relacional é aquele que tem os seus dados organizados de forma em que eles se relacionem uns com os outros.</p>
+<p>Utilizando uma analogia simples, pode se dizer que uma estrutura deste tipo é como a recepção de uma pousada. Ao chegar na pousada e informar a hospedagem a recepção nos entrega uma chave e esta chave contem o numero do nosso quarto e nos permite acessá-lo. De posse desta chave sempre conseguirmos ter um acesso direto ao nosso quarto.</p>
 
-<!-- Relationship image -->
+<figure class="image-card width-wide caption">
+  <img src="/images/kv-database/reception.jpg" alt="Hotel Reception" />
+  
+  <figcaption class="caption-text"></figcaption>
+  
+</figure>
 
-<p>Geralmente estes bancos de dados estruturam os seus dados em tabelas e estas tabelas se relacionam através de referências entre as suas colunas.</p>
+<p>Trazendo isto um pouco mais perto da linguagem técnica podemos pensar também em um <em><a href="https://pt.wikipedia.org/wiki/JSON">JSON</a></em>:</p>
 
-<p>Bancos relacionais em geral também são considerados multiproposito, uma vez que oferecem uma vasta gama de funcionalidades que beneficiam diversos tipos de aplicações.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"quartos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"306"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"camas"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"tv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plasma"</span><span class="p">}},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"206"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"camas"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"tv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plasma"</span><span class="p">}}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
-<p>Dentre estas funcionalidades temos a possibilidade de realizarmos queries complexas, buscando informações com base inclusive no relacionamento das tabelas.</p>
+<h2 id="tá-mas-onde-entra-o-banco-de-dados">Tá mas onde entra o banco de dados?</h2>
 
-<p>Bancos relacionais obedecem a um <em>schema</em> o qual é uma definição do formato dos dados que devem ser armazenados. Este <em>schema</em> geralmente é bem rigido e custoso para ser modificado, principalmente quando já existem dados no banco.</p>
+<p>Certo, se chegamos até aqui, provavelmente você já entendeu um pouco de como tudo isto funciona, e talvez até já tenha lidado com mapas e dicionários com algumas linguagens de programação, mas fica a pergunta, o que diabos isso tudo tem a ver com bancos de dados e o que são bancos de dados chave e valor, certo?</p>
+
+<p>Bom tem tudo a ver e você já vai ver porquê.</p>
+
+<p>De acordo com a definição da <a href="https://www.oracle.com/br/database/what-is-database/">Oracle</a>:</p>
+
+<blockquote>
+  <p>Um banco de dados é uma coleção organizada de informações - ou dados - estruturadas, normalmente armazenadas eletronicamente em um sistema de computador</p>
+</blockquote>
+
+<p>Nesta categoria se encaixam softwares cujo objetivo é manter dados de forma organizada:</p>
+
+<ul>
+  <li><a href="https://redis.io">Redis</a></li>
+  <li><a href="https://aws.amazon.com/dynamodb/">DynamoDB</a></li>
+  <li><a href="https://www.project-voldemort.com/voldemort/">Voldemort</a></li>
+</ul>
+
+<p>Aqui trago somente 3 exemplos de bancos chave e valor mas esta lista não tem o objetivo de de ser exaustiva, Este <a href="https://en.wikipedia.org/wiki/Key–value_database">artigo</a> possui uma lista mais completa caso seja do seu interesse.</p>
+
+<p>Estes bancos em geral, embora não trabalhem exclusivamente como chave e valor desempenham bem este papel.</p>
+
+<p>Bancos de dados Chave e Valor podem operar de duas formas: Em memória ou de forma híbrida.</p>
+
+<h3 id="bancos-de-dados-em-memória">Bancos de dados em memória</h3>
+
+<figure class="image-card width-wide caption">
+  <img src="/images/kv-database/memory.jpg" alt="Memory" />
+  
+  <figcaption class="caption-text"></figcaption>
+  
+</figure>
+
+<p>Quando um banco de dados está configurado para trabalhar em memória o que ocorre é que toda a informação é armazenada na memória RAM do servidor. Como tudo, quando falamos de software (e até em outras situações) existem pontos positivos e negativos.</p>
+
+<p>Como principal ponto positivo temos a velocidade. Bancos de dados operando exclusivamente em memória não precisam escrever a informação em disco e o acesso a memória é muito mais rápido que o acesso a disco portanto são bancos onde a escrita e a leitura de informações é muito rápida.</p>
+
+<p>Em se tratando de bancos chave e valor a leitura de informações se torna muito rápida também pela forma como é armazenda pois similar a um mapa, a partir da chave temos acesso direto ao valor então na maior parte dos casos podemos dizer que teremos uma complexidade O(1) para a leitura de informações destes bancos de dados.</p>
+
+<p>Mas como <a href="https://pt.wikipedia.org/wiki/There_ain%27t_no_such_thing_as_a_free_lunch">não existe almoço grátis</a> existem também alguns lados negativos desta abordagem.</p>
+
+<p>Como as informações estão em memória e a memória RAM é volátil, caso ocorra alguma falha, queda de energia, etc. esta informação pode ser inteiramente perdida. Outro ponto importante é que usualmente temos uma quantidade muito menor de memória RAM do que disco nos servidores, e esta não é facilmente expansivel a ponto de podermos ter memória de forma elástica, inclusive pelo seu custo, sendo assim ficamos limitados a quantidade disponível de memória RAM, portanto é preciso tomar cuidado, tanto para garantir que estamos usando esta abordagem com dados que realmente valham a pena pois não teremos muito espaço, bem como, que esta informação não represente problema caso perdida ou possa ser realimentada de outra fonte.</p>
+
+<h3 id="armazenamento-híbrido">Armazenamento Híbrido</h3>
+
+<p>Estes bancos geralmente não trabalham somente com armazenamento em disco, especialmente visto que o objetivo deles em geral é ter ótima performance, sendo assim normalmente eles trabalham com uma abordagem mais híbrida. Esta abordagem funciona, em geral, de forma que toda informação quando é gravada é persistida no disco porém uma parte dela é mantida em memória para que o acesso seja rápido.</p>
+
+<p>O que é ou não mantido em memória vai depender da política de cada banco de dados e geralmente pode ser configurada de acordo com o seu use case para definir a forma que melhor se adequa, podendo ser por exemplo os registros mais recentes, os registros mais acessados, etc.</p>
+
 
     </div><!-- .post-content -->
     <div class="post-share">

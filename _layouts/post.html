@@ -44,7 +44,7 @@ layout: default
             rel="tag">{{ tag | remove: languageMarker }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>{% endif %}
       </div><!-- .post-meta -->
       {% if page.feature_image and page.feature_image != "" %}
-      <figure class="post-thumbnail image-card width-wide">
+      <figure class="post-thumbnail image-card width-full">
         <img src="{{ page.feature_image | relative_url }}" alt="{{ page.title }}">
       </figure><!-- .post-thumbnail -->
       {% endif %}
