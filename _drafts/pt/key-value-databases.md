@@ -72,8 +72,55 @@ Como as informações estão em memória e a memória RAM é volátil, caso ocor
 
 ### Armazenamento Híbrido
 
+{% include image_caption.html imageurl="/images/kv-database/bookshelf.jpg" title="Bookshelf" caption="" %}
+
 Estes bancos geralmente não trabalham somente com armazenamento em disco, especialmente visto que o objetivo deles em geral é ter ótima performance, sendo assim normalmente eles trabalham com uma abordagem mais híbrida. Esta abordagem funciona, em geral, de forma que toda informação quando é gravada é persistida no disco porém uma parte dela é mantida em memória para que o acesso seja rápido.
 
-O que é ou não mantido em memória vai depender da política de cada banco de dados e geralmente pode ser configurada de acordo com o seu use case para definir a forma que melhor se adequa, podendo ser por exemplo os registros mais recentes, os registros mais acessados, etc.
+O que é ou não mantido em memória vai depender da política de cada banco de dados e geralmente pode ser configurada de acordo com o seu caso de uso para definir a forma que melhor se adequa, podendo ser por exemplo os registros mais recentes, os registros mais acessados, etc.
 
+Ao utilizar esta abordagem não temos mais a limitação da quantidade de informação com base na memória RAM e sim no disco que geralmente é bem maior, bem como, caso ocorra alguma falha de hardware ou algo que ocasione a perda dos dados em memória, as informações não serão perdidas, visto que poderão ser recuperadas do disco. O ponto negativo disto é que em situações que fujam ao que foi configurado teremos o tempo de acesso ao disco adicionado as nossas buscas.
 
+A exceção de cenários específicos onde realmente podemos estar dispostos a perder as informações esta abordagem geralmente é preferível, visto que os tempos de acesso a disco vem se tornando cada vez mais rápidos a medida que tecnologias como SSD vão surgindo e sendo aprimoradas o que torna os contras desta abordagem cada vez menos relevantes face as vantagens presentes.
+
+## Modelagem
+
+{% include image_caption.html imageurl="/images/kv-database/modeling.jpg" title="Modeling" caption="" %}
+
+Quando já temos uma bagagem de um banco relacional, como geralmente é comum, temos a tendência de pensar a modelagem de dados de uma forma e as queries que iremos fazer decidimos depois. Isto ocorre, pois os bancos relacionais, trabalhando com sql, nos oferecem uma infinidade de formas de localizar um registro ou uma série de registros.
+
+Em geral isto não ocorre com bancos do tipo chave e valor, o modelo ideal de acesso é quando temos acesso direto a chave sem precisar realizar nenhum tipo de consulta. Na maior parte dos bancos, não é possivel realizar uma busca dentro do valor. Para exemplificar imagine uma biblioteca que organiza os livros de forma que sempre é possivel localizá-los se souber a estante e a prateleira.
+
+```json
+{
+    "biblioteca": {
+        "A10:3": [
+            {
+                "titulo": "Harry Potter e a Ordem da Fenix",
+                "autor": "J.K. Rowling"
+            },
+            {
+                "titulo": "Harry Potter e a Pedra Filosofal",
+                "autor": "J.K. Rowling"
+            }
+        ],
+        "A10:12": [
+            {
+                "titulo": "O Hobbit",
+                "autor": "J.R.R. Tolkien"
+            },
+            {
+                "titulo": "O Senhor dos Anéis: A Sociedade do Anel",
+                "autor": "J.R.R. Tolkien"
+            }
+        ]
+    }
+}
+```
+
+Caso saibamos qual a estante e a prateleira podemos localizar os livros da série Harry Potter por exemplo, porém náo conseguimos realizar uma consulta para saber em quais estantes estão os livros de J.R.R. Tolkien.
+
+Portanto, com este tipo de banco de dados é importante que realizemos a modelagem dos dados já pensando na maneira como irá ser o acesso deles. É muito importante que se pense muito bem em qual será a chave usada para estes dados pois ela será essencial na forma de acessá-los.
+
+Outro ponto importante sobre modelagem é o uso de aggregates, porém como isto não é um tema especifico de bancos chave e valor não vai ser alvo deste artigo, quem tiver interesse pode ler um pouco mais sobre isto [aqui](https://arleypadua.medium.com/porque-armazenar-agregados-com-nosql-b2a460ffe18a).
+
+## Quando usar?
