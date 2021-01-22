@@ -1,41 +1,67 @@
 ---
 layout: post
-title: "Post exemplo"
-description: "Loving you is very good"
-date: 2019-01-02
-feature_image: images/mountain.jpg
+title: "Key-Value Databases"
+description: "Understanding what they are where they live and what they feed on"
+date: 01/01/1970
+feature_image: images/kv-database/lockers.jpg
 language: en-US
-tags: [amor%en-US%]
+tags: [data%en-US%, nosql%en-US%]
 ---
 
-KV
-
+Key-Value database is a term that defines a number of NoSQL of databases with similar characteristics, but not all of them work the same way. Here I will explain some of these characteristics without going too deep on any specific feature.
 
 <!--more-->
 
-Hiking can sometimes involves bushwhacking and hiking is sometimes referred to as such. This specifically refers to difficult walking through dense forest, undergrowth, or bushes, where forward progress requires pushing vegetation aside. In extreme cases of bushwhacking, where the vegetation is so dense that human passage is impeded, a machete is used to clear a pathway. The Australian term bushwalking refers to both on and off-trail hiking. Common terms for hiking used by [New Zealanders](https://en.wikipedia.org/wiki/New_Zealand) are tramping (particularly for overnight and longer trips), walking or bushwalking. Trekking is the preferred word used to describe multi-day hiking in the mountainous regions of India, Pakistan, Nepal, North America, South America, Iran and in the highlands of East Africa. Hiking a long-distance trail from end-to-end is also referred to as trekking and as thru-hiking in some places. In North America, multi-day hikes, usually with camping, are referred to as [backpacking](https://en.wikipedia.org/wiki/Backpacking_(wilderness)).
+If you want to know a little more about NoSQL in general, the distinction between them and relational databases, the CAP theorem among other stuff I recommend reading of a great book called [NoSQL Distilled](https://www.amazon.com/NoSQL-Distilled-Emerging-Polyglot-Persistence-ebook/dp/B0090J3SYW/ref=tmm_kin_swatch_0?_encoding=UTF8&qid=&sr=). This book cover initial concepts around NoSQL and is a good starting point.
 
-## Long Distance Hiking
+## What do you mean by key-value?
 
-Frequently nowadays long distance hikes (walking tours) are undertaken along long distance paths, including the National Trails in England and Wales, the National Trail System in the USA and The Grande Randonnée (France), Grote Routepaden, or Lange-afstand-wandelpaden (Holland), Grande Rota (Portugal), Gran Recorrido (Spain) is a network of long-distance footpaths in Europe, mostly in France, Belgium, the Netherlands and Spain. There are extensive networks in other European countries of long distance trails, as well as in Canada, Australia, New Zealand, Nepal, and to a lesser extent other Asiatic countries, like Turkey, Israel, and Jordan. In the Alps of Austria, Slovenia, Switzerland, Germany, France, and Italy walking tours are often made from 'hut-to-hut', using an extensive system of mountain huts.
+A key-value database is a database containing a structure to store data similarly to a Map or a Dictionary, where the structure holds a key and this key is an identifier that points to a single record.
 
-{% include image_full.html imageurl="/ogabriel/images/mountain-2.jpg" title="Mountain" caption="Norway is Beautiful" %}
+Using a simple analogy, this structure is like a hotel reception. When you get to the hotel a key is handed to you, this key contains your room number, and gives you the ability to go into the room. In possession of this key we can always go straight to our room.
 
-In the late 20th-century there has been a proliferation of official and unofficial long distance routes, which mean that hikers now are more likely to refer to using a long distance way (Britain), trail (USA), The Grande Randonnée (France), etc., than setting out on a walking tour. Early examples of long distance paths, include the Appalachian Trail in the USA and the Pennine Way in Britain. Pilgrimage routes are now treated, by some walkers, as long distance routes, and the route taken by the British National Trail the North Downs Way closely follows that of the Pilgrims' Way to Canterbury.
+{% include image_caption.html imageurl="/images/kv-database/reception.jpg" title="Hotel Reception" caption="" %}
 
-*Hiking times can be estimated by Naismith's rule or Tobler's hiking function.*
+Taking this to the technical field we could think of it as a *[JSON](https://wikipedia.org/wiki/JSON)*:
 
-## Equipment
+```json
+{
+    "rooms": [
+        {"306": {"beds": 2, "tv": "LCD"}},
+        {"206": {"beds": 1, "tv": "LCD"}}
+    ]
+}
+```
 
-The equipment required for hiking depends on the length of the hike, but day hikers generally carry at least water, food, a map, and rain-proof gear. Hikers usually wear sturdy hiking boots for mountain walking and backpacking, as protection from the rough terrain, as well as providing increased stability. The Mountaineers club recommends a list of "Ten Essentials" equipment for hiking, including a compass, sunglasses, sunscreen, a flashlight, a first aid kit, a fire starter, and a knife. Other groups recommend items such as hat, gloves, insect repellent, and an emergency blanket. A GPS navigation device can also be helpful and route cards may be used as a guide.
+## Ok, but where the database goes in?
 
->“Returning home is the most difficult part of long-distance hiking; You have grown outside the puzzle and your piece no longer fits.”
-><cite>― Cindy Ross</cite>
+If we got here you already understood how key-values work, even may have dealt with Maps or Dictionaries using any programming language, but you could be asking yourself, Where the hell all of this are related to databases?
 
-Proponents of ultralight backpacking argue that long lists of required items for multi-day hikes increases pack weight, and hence fatigue and the chance of injury. Instead, they recommend reducing pack weight, in order to make hiking long distances easier. Even the use of hiking boots on long-distances hikes is controversial among ultralight hikers, because of their weight.
+Well, the answer is that is all related.
 
-## Environmental Impact
+According to [Oracle](https://www.oracle.com/database/what-is-database/):
 
-Natural environments are often fragile, and may be accidentally damaged, especially when a large number of hikers are involved. For example, years of gathering wood can strip an alpine area of valuable nutrients. and some species, such as martens or bighorn sheep, are very sensitive to the presence of humans, especially around mating season. Generally, protected areas such as parks have regulations in place to protect the environment, so as to minimize such impact. Such regulations include banning wood fires, restricting camping to established camp sites, disposing or packing out faecal matter, and imposing a quota on the number of hikers. Many hikers espouse the philosophy of Leave No Trace, following strict practices on dealing with food waste, food packaging, and other impact on the environment.
+>A database is an organized collection of structured information, or data, typically stored electronically in a computer system
 
-Human waste is often a major source of environmental impact from hiking, and can contaminate the watershed and make other hikers ill. 'Catholes' dug 10 to 25 cm (4 to 10 inches) deep, depending on local soil composition and covered after use, at least 60 m (200 feet) away from water sources and trails, are recommended to reduce the risk of bacterial contamination. [ [Source](https://en.wikipedia.org/wiki/Hiking) ]
+Related to this definition we can point some softwares:
+
+- [Redis](https://redis.io)
+- [DynamoDB](https://aws.amazon.com/dynamodb/)
+- [Voldemort](https://www.project-voldemort.com/voldemort/)
+
+These are just 3 examples. This is not an exhausting list, if you want to know more implementations of key-value databases you can check this [post](https://en.wikipedia.org/wiki/Key–value_database).
+
+Besides some of these databases are not exclusively key-value, all of them perform this role very well.
+
+Key-Value databases can store data in two ways, In memory or Hybrid.
+
+### In-memory databases
+
+{% include image_caption.html imageurl="/images/kv-database/memory.jpg" title="Memory" caption="" %}
+
+A database configured to operate in-memory stores all of its information on the RAM. Everything in software engineering has tradeoffs and this situation is not an exception.
+
+The main benefit of using in-memory storage is speed. Databases storing data exclusively in-memory don't need to write on disk and memory access is faster than disk access so these are databases with great reading and writing performance.
+
+When we talk about key-value databases the reading of data is even more optimized by the way data is stored. Using a structure similar to a [HashMap](https://www.w3schools.com/java/java_hashmap.asp), using the key we have direct access to the stored information, usually for this operation we have O(1) complexity what is an optimal performance.
+
