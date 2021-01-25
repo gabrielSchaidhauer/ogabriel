@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key-Value Databases</title>
+  <meta name="description" content="Understanding what they are where they live and what they feed on">
+  <link rel="canonical" href="https://ogabriel.com/en/2021-01-21-key-value-databases">
+  <link rel="alternate" type="application/rss+xml" title="Gabriel Schaidhauer Feed"
+    href="https://ogabriel.com/feed.xml">
+  
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/png" />
+  
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="page" class="site">
+    <div class="inner">
+      <header class="site-header">
+  <script>
+    var languages = {
+        'pt-BR': 'pt',
+        'en-US': 'en'
+    };
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+
+    function getUserLanguage() {
+        var language = getCookie("userLanguage");
+
+        if (!language || language == "undefined") {
+            var userLang = navigator.language || navigator.userLanguage;
+            language = languages[userLang];
+
+            if (!language) {
+                language = languages['en-US'];
+            }
+        }
+
+        return language;
+    }
+
+    function setUserLanguage(language) {
+        debugger;
+        var url = location.href;
+        var chosenLanguage = '';
+        var languageKeys = Object.keys(languages);
+        for (var i = 0; i < languageKeys.length; i++) {
+            var lang = languageKeys[i];
+            if (lang === language) {
+                setCookie("userLanguage", languages[lang], 360);
+                chosenLanguage = languages[lang];
+            } else if (languages[lang] === language) {
+                setCookie("userLanguage", language, 360);
+                chosenLanguage = language;
+            }
+        }
+
+        if (!url.includes('/' + chosenLanguage + '/')) {
+            for (var i = 0; i < languageKeys.length; i++) {
+                var lang = languageKeys[i];
+                if (url.includes('/' + languages[lang] + '/')) {
+                    url = url.replace('/' + languages[lang] + '/', '/' + chosenLanguage + '/');
+                    break;
+                }
+            }
+
+            if (!url.includes('/' + chosenLanguage + '/')) {
+                url = url + '/' + chosenLanguage;
+            }
+            location.href = url;
+        }
+    }
+</script>
+  
+  <p class="site-title"><a class="logo-text" href="/">Gabriel Schaidhauer</a></p>
+  
+  <nav class="site-navigation">
+    <div class="site-navigation-wrap">
+      <h2 class="screen-reader-text">Main navigation</h2>
+      <ul class="menu">
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/">Home</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="about">About</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="tags">Tags</a>
+        </li>
+        
+        <li class="menu-item ">
+          <a href="#" onclick="setUserLanguage('pt-BR')">🇧🇷 Português</a>
+        </li>
+      </ul><!-- .menu -->
+      <button id="menu-close" class="menu-toggle"><span class="screen-reader-text">Close Menu</span><span
+          class="icon-close" aria-hidden="true"></span></button>
+    </div><!-- .site-navigation-wrap -->
+  </nav><!-- .site-navigation -->
+  <button id="menu-open" class="menu-toggle"><span class="screen-reader-text">Open Menu</span><span class="icon-menu" aria-hidden="true"></span></button>
+</header>
+
+      <main class="main-content fadeInDown delay_075s">
+
+  <article class="post">
+    
+    
+    
+
+    <header class="post-header">
+      <time class="post-date" datetime="1970-01-01">January,
+        1, 1970</time>
+      <h1 class="post-title">Key-Value Databases</h1>
+      <div class="post-meta">
+        By <span class="post-author">Gabriel Schaidhauer</span><span
+          class="post-tags">  <a href="/tags/#data%25en-US%25"
+            rel="tag">data</a>, <a href="/tags/#nosql%25en-US%25"
+            rel="tag">nosql</a></span>
+      </div><!-- .post-meta -->
+      
+      <figure class="post-thumbnail image-card width-full">
+        <img src="/images/kv-database/lockers.jpg" alt="Key-Value Databases">
+      </figure><!-- .post-thumbnail -->
+      
+    </header><!-- .post-header -->
+    <div class="post-content">
+      <p>Key-Value database is a term that defines several NoSQL databases with similar characteristics, but not all of them work the same way. Here I will explain some of these characteristics without going too deep on any specific feature.
+<!--more--></p>
+
+<p>If you want to know a little more about NoSQL in general, the distinction between them and relational databases, the CAP theorem, etc. I recommend reading a great book called <a href="https://www.amazon.com/NoSQL-Distilled-Emerging-Polyglot-Persistence-ebook/dp/B0090J3SYW/ref=tmm_kin_swatch_0?_encoding=UTF8&amp;qid=&amp;sr=">NoSQL Distilled</a>. This book covers initial concepts around NoSQL and is a good starting point.</p>
+
+<h2 id="what-do-you-mean-by-key-value">What do you mean by key-value?</h2>
+<p>A key-value database is a database containing a structure to store data similarly to a Map or a Dictionary, where the structure holds a key, and this key is an identifier that points to a single record.
+Using a simple analogy, this structure is like a hotel reception. When you get to the hotel a key is handed to you, this key contains your room number and gives you the ability to go into the room. In possession of this key, we can always go straight to our room.</p>
+
+<figure class="image-card width-wide caption">
+  <img src="/images/kv-database/reception.jpg" alt="Hotel Reception" />
+  
+  <figcaption class="caption-text"></figcaption>
+  
+</figure>
+
+<p>Taking this to the technical field we could think of it as a <em><a href="https://wikipedia.org/wiki/JSON">JSON</a></em>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"rooms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="s2">"306"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"beds"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"tv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LCD"</span><span class="p">}},</span><span class="w">
+      </span><span class="p">{</span><span class="s2">"206"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"beds"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"tv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LCD"</span><span class="p">}}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="ok-but-where-the-database-goes-in">Ok, but where the database goes in?</h2>
+
+<p>If we got here you already understood how key-values work, even may have dealt with Maps or Dictionaries using any programming language, but you could be asking yourself, Where the hell all of this are related to databases?</p>
+
+<p>Well, the answer is that is all related.</p>
+
+<p>According to <a href="https://www.oracle.com/database/what-is-database/">Oracle</a>:</p>
+
+<blockquote>
+  <p>A database is an organized collection of structured information, or data, typically stored electronically in a computer system</p>
+</blockquote>
+
+<p>Related to this definition we can point some software:</p>
+<ul>
+  <li><a href="https://redis.io">Redis</a></li>
+  <li><a href="https://aws.amazon.com/dynamodb/">DynamoDB</a></li>
+  <li><a href="https://www.project-voldemort.com/voldemort/">Voldemort</a></li>
+</ul>
+
+<p>These are just 3 examples. This is not an exhausting list, if you want to know more implementations of key-value databases you can check this <a href="https://en.wikipedia.org/wiki/Key–value_database">post</a>.</p>
+
+<p>Besides some of these databases are not exclusively key-value, all of them perform this role very well.</p>
+
+<p>Key-Value databases can store data in two ways, In memory or Hybrid.</p>
+
+<h3 id="in-memory-databases">In-memory databases</h3>
+
+<figure class="image-card width-wide caption">
+  <img src="/images/kv-database/memory.jpg" alt="Memory" />
+  
+  <figcaption class="caption-text"></figcaption>
+  
+</figure>
+
+<p>A database configured to operate in-memory stores all of its information on the RAM. Everything in software engineering has tradeoffs and this situation is not an exception.</p>
+
+<p>The main benefit of using in-memory storage is speed. Databases storing data exclusively in-memory don’t need to write on disk and memory access is faster than disk access so these are databases with great reading and writing performance.</p>
+
+<p>When we talk about key-value databases the reading of data is even more optimized by the way data is stored. Using a structure similar to a <a href="https://www.w3schools.com/java/java_hashmap.asp">HashMap</a>, using the key we have direct access to the stored information, usually, for this operation, we have O(1) complexity what is optimal performance.</p>
+
+<p>As we say <a href="https://en.wikipedia.org/w/index.php?title=There_ain%27t_no_such_thing_as_a_free_lunch&amp;redirect=no">there ain’t no such thing as a free lunch</a> so there are also downsides to this approach.</p>
+
+<p>Since all the data is in memory and RAM is volatile if there is any kind of failure like a power outage or any other the data could be entirely lost.</p>
+
+<p>Another important aspect is the amount of memory available on servers. Usually, we have a lot less memory than disk storage, and memory is not that easy to scale. So, when using this kind of approach we get limited by the amount of memory available.</p>
+
+<h3 id="hybrid-storage">Hybrid Storage</h3>
+
+<figure class="image-card width-wide caption">
+  <img src="/images/kv-database/bookshelf.jpg" alt="Bookshelf" />
+  
+  <figcaption class="caption-text"></figcaption>
+  
+</figure>
+
+<p>These databases usually don’t work exclusively with disk storage. Focusing on the performance they commonly choose a hybrid approach. This works by storing all the information on disk but keeping some loaded for fast access.</p>
+
+<p>What is or is not kept in memory depends on the database configuration and, usually, can be customized accordingly to each use case. It can be configured to keep only more recent records or more accessed records in memory.</p>
+
+<p>Using this kind of storage we are not limited by memory anymore, having a lot more space to store data. Also, when using disk storage we don’t need to worry about data loss due to outages, if an outage happens the server can reload the data from disk to the memory based on his policies. The main downside of this approach is that 
+when the use case doesn’t match the configured conditions the time to load the data from disk could be added to the operation.</p>
+
+<p>Excluding specific use cases where you are willing to lose data, the hybrid approach is preferred. In the last couple of years, the price and performance of disk storage have increased, especially with the advent of SSD technologies, which makes the downsides of the hybrid approach get less and less compelling.</p>
+
+<h2 id="modeling">Modeling</h2>
+
+<figure class="image-card width-wide caption">
+  <img src="/images/kv-database/modeling.jpg" alt="Modeling" />
+  
+  <figcaption class="caption-text"></figcaption>
+  
+</figure>
+
+<p>If you already know relational databases you usually end up modeling the data at first and then you think on the queries after, as they are needed. It happens because on relational databases we have an infinity of ways of searching and fetching data, which does not happen on most NoSQL databases.</p>
+
+<p>This fact is especially true to key-value databases. Its ideal model is when we can have previous knowledge of the key, without having to search for it. On most key-value databases, we cannot search for data on the stored value. To better understand let’s see an example. Imagine a library where you can always find a book if you know it’s bookcase and shelf.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"library"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"A10:3"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter and the Order of the Phoenix"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"J.K. Rowling"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry Potter and the Philosopher's Stone"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"J.K. Rowling"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"A10:12"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Hobbit"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"J.R.R. Tolkien"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Lord of the Rings: The Fellowship of the Ring"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"J.R.R. Tolkien"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If we know the bookcase and the shelf we can locate all the Harry Potter books available. However, we cannot find on which shelf the books of J.R.R Tolkien are.</p>
+
+<p>This shows us that using this kind of database we need to think carefully about the modeling of our data already thinking about how the data will be queried. We must define very well our keys since we must have the ability to easily find them.</p>
+
+<p>Another important aspect of the modeling is the definition of the aggregate, but, since this is not a specific aspect of key-value databases it will not be explained in this post. If you want to know more about it you can read <a href="https://arleypadua.medium.com/why-keeping-aggregates-with-nosql-9e1d9f9920f2">here</a>.</p>
+
+<h2 id="when-you-should-use-it">When you should use it</h2>
+
+<p>As we have seen, key-value databases, in general, have an access pattern where you should know the key that leads you to your data. This access pattern creates situations where key-value databases are not the best fit.</p>
+
+<p>Imagine listing products, but to list the products we would end up needing to fetch from the database each of the product details, this would be a good fit? It seems the combination of bad modeling and a use case that doesn’t match the database.</p>
+
+<p>Commonly, this kind of database should be used to store data that fit as a unity, such as user session, user preferences, shopping carts, etc.</p>
+
+<p>Obviously, it is relative to your business area and also your system modeling, in your system it may be for example that a product list would be associated with a specific key, but we need to be always aware of how we need to fetch the data and the database limitations.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Key-Value databases are powerful tools and won’t be I who will escape from the cliche of saying that with great power comes great responsibility. Working with this kind of database we need to evaluate carefully if this is the right choice for our use case, what kind of storage we are going to use, if it offers more than one if we know how our modeling will be, etc. Even with all the limitations, these databases provide great advantages in terms of performance and scalability, so if you still haven’t it is worth a try.</p>
+
+<p>If you want to leave a comment telling me what you think, let’s chat.</p>
+
+<p>Happy Coding!</p>
+
+
+    </div><!-- .post-content -->
+    <div class="post-share">
+      <span>Share:</span>
+      <a target="_blank"
+        href="https://twitter.com/intent/tweet?text=Key-Value%20Databases&amp;url=https://ogabriel.com/en/2021-01-21-key-value-databases"
+        rel="noopener">Twitter</a>
+      <a target="_blank"
+        href="https://www.facebook.com/sharer/sharer.php?u=https://ogabriel.com/en/2021-01-21-key-value-databases&amp;t=Key-Value%20Databases"
+        rel="noopener">Facebook</a>
+    </div><!-- .share-post -->
+    <div class="author-box">
+      
+      <div class="author-avatar" style="background-image: url('../../images/author.jpg')"><span
+          class="screen-reader-text">Gabriel Schaidhauer's Picture</span></div>
+      
+      <div class="author-details">
+        <h2 class="author-title">About Gabriel Schaidhauer</h2>
+        <div class="author-bio"><p>The author is a tech enthusiast with a taste for beer, wine and videogames currently working as software architect on a tech company based on Porto Alegre</p>
+</div>
+        
+        <span class="author-location">Porto Alegre, Brazil</span>
+        
+        
+      </div><!-- .author-details -->
+    </div><!-- .author-box -->
+  </article><!-- .post -->
+
+  
+  <div class="comments-area">
+  <div class="comments-inner">
+    <h2 class="comments-title">Comments</h2>
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus</a>.</noscript>
+  </div><!-- .comments-inner -->
+</div><!-- .comments-area -->
+
+<script type="text/javascript">
+  var disqus_shortname = 'ogabriel-com';
+  var disqus_developer = 0;
+  (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+  
+
+</main><!-- .main-content -->
+      <footer class="site-footer">
+  <div class="offsite-links">
+    
+      
+<a href="https://github.com/gabrielschaidhauer" target="_blank" rel="noopener">
+  <span class="fa-github" aria-hidden="true"></span>
+  <span class="screen-reader-text">GitHub</span>
+</a>
+
+<a href="https://www.instagram.com/gabrielschaidhauer" target="_blank" rel="noopener">
+  <span class="fa-instagram" aria-hidden="true"></span>
+  <span class="screen-reader-text">Instagram</span>
+</a>
+
+<a href="https://www.linkedin.com/in/gabrielschaidhauer/" target="_blank" rel="noopener">
+  <span class="fa-linkedin" aria-hidden="true"></span>
+  <span class="screen-reader-text">LinkedIn</span>
+</a>
+
+    
+  </div><!-- .offsite-links -->
+  <div class="footer-bottom">
+    <div class="site-info">
+      <p>© ogabriel.com all rights reserved.</p>
+
+    </div><!-- .site-info -->
+    <a href="#page" id="back-to-top" class="back-to-top"><span class="screen-reader-text">Back to the top </span>&#8593;</a>
+  </div><!-- .footer-bottom -->
+</footer><!-- .site-footer -->
+
+    </div><!-- .inner -->
+  </div><!-- .site -->
+
+  <!-- Scripts -->
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-15Y20JGRVJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-15Y20JGRVJ');
+</script>
+  
+  <script src="/assets/js/plugins.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+</body>
+</html>
