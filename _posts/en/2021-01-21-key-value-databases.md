@@ -2,7 +2,7 @@
 layout: post
 title: "Key-Value Databases"
 description: "Understanding what they are where they live and what they feed on"
-date: 01/01/1970
+date: 21/01/2021
 feature_image: images/kv-database/lockers.jpg
 language: en-US
 tags: [data%en-US%, nosql%en-US%]
