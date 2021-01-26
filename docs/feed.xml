@@ -5,8 +5,8 @@
         <description>This is a personal blog where I can put my ideas and share with anyone interested</description>
         <link>https://ogabriel.com/</link>
         <atom:link href="https://ogabriel.com/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 25 Jan 2021 08:54:34 -0300</pubDate>
-        <lastBuildDate>Mon, 25 Jan 2021 08:54:34 -0300</lastBuildDate>
+        <pubDate>Mon, 25 Jan 2021 22:26:16 -0300</pubDate>
+        <lastBuildDate>Mon, 25 Jan 2021 22:26:16 -0300</lastBuildDate>
         <generator>Jekyll v3.7.4</generator>
         
             <item>
@@ -330,7 +330,7 @@ when the use case doesn’t match the configured conditions the time to load the
 &lt;p&gt;Happy Coding!&lt;/p&gt;
 
 </description>
-                <pubDate>Thu, 01 Jan 1970 00:00:00 -0300</pubDate>
+                <pubDate>Thu, 21 Jan 2021 00:00:00 -0300</pubDate>
                 <link>https://ogabriel.com/en/2021-01-21-key-value-databases</link>
                 <guid isPermaLink="true">https://ogabriel.com/en/2021-01-21-key-value-databases</guid>
                 
